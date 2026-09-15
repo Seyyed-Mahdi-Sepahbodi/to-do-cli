@@ -99,7 +99,7 @@ def list_tasks(
     table.add_column("ID", style="dim", width=10)
     table.add_column("Status", width=16)
     table.add_column("Priority", width=12)
-    table.add_column("Title", style="bold")
+    table.add_column("Title", style="bold", overflow="fold", min_width=30, ratio=3)
     table.add_column("Deadline", style="cyan", width=14)
     table.add_column("Tags", style="green")
 
