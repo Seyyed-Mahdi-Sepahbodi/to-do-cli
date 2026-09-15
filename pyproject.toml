@@ -21,8 +21,14 @@ dev = [
     "pytest-cov>=5.0.0",
 ]
 
+[project.scripts]
+task-cli = "task_cli.ui.cli:app"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-v"
+
+[tool.hatch.build.targets.wheel]
+packages = ["task_cli"]
