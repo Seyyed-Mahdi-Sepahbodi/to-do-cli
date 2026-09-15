@@ -13,6 +13,7 @@ from task_cli.domain.enums import TaskPriority, TaskStatus
 from task_cli.domain.exceptions import TaskNotFoundError
 from task_cli.infrastructure.config import StorageType, get_repository
 from task_cli.services.task_service import TaskService
+from task_cli.ui.tui_app import TaskManagerTUI
 
 app = typer.Typer(
     name="task-cli",
@@ -164,6 +165,13 @@ def stats(
 
     console.print(Panel(summary_text, title="📈 Task Overview Summary", expand=False, border_style="cyan"))
 
+@app.command()
+def tui(
+    storage: Annotated[StorageType, typer.Option("--storage", "-s", help="Storage backend")] = StorageType.SQLITE,
+) -> None:
+    """🖥 Launch interactive Fullscreen TUI (Dashboard with Mouse & Keyboard support)."""
+    tui_app = TaskManagerTUI(storage_type=storage)
+    tui_app.run()
 
 if __name__ == "__main__":
     app()
